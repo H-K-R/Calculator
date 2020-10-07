@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .main {
+            background: whitesmoke;
+            width: 300px;
+            box-shadow: 0px 0px 15px 10px #ececec;
+            padding: 25px 20px;
+            border-radius: 20px;
+        }
+
+        input.form-input {
+            width: 85%;
+            box-shadow: 0px 0px 5px 1px grey inset;
+            height: 45px;
+            margin-bottom: 10px;
+            border: 0px;
+            border-radius: 30px;
+            outline: none;
+            padding: 0px 20px;
+            font-size: 18px;
+            text-align: end;
+        }
+
+        .col {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0px;
+        }
+
+        input[type="button"] {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 0;
+            box-shadow: 0px 0px 10px 4px #d8d8d8;
+            outline: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+</style>
+</head>
+<body>
+    <div class="main">
+        <div class="input">
+            <input id="input" type="text" class="form-input" value="0" readonly>
+        </div>
+        <div class="col">
+            <div class="button">
+                <input type="button" onclick="allclr()" id="allclean" style="color: #FF5722;" value="AC">
+            </div>
+            <div class="button">
+                <input type="button" onclick="clr()" id="clear" style="color: #FF5722;" value="C">
+            </div>
+            <div class="button">
+                <input type="button" onclick="if(document.getElementById('input').value == 0){dis('0')}else{dis('%')}" id="moduls" style="color: #FF5722;" value="%">
+            </div>
+            <div class="button">
+               <input type="button" onclick="if(document.getElementById('input').value == 0){dis('0')}else{dis('/')}" id="divided" style="color: #FF5722;" value="/">
+            </div>
+        </div>
+        <div class="col">
+            <div class="input">
+                <input type="button" onclick="dis('7')" id="seven" value="7">
+            </div>
+            <div class="button">
+                <input type="button" onclick="dis('8')" id="eight" value="8">
+            </div>
+            <div class="button">
+               <input type="button" onclick="dis('9')" id="nine" value="9">
+            </div>
+            <div class="button">
+                <input type="button" onclick="if(document.getElementById('input').value == 0){dis('0')}else{dis('*')}" id="multiplie" style="color: #FF5722;" value="x">
+            </div>
+        </div>
+        <div class="col">
+            <div class="button">
+                <input type="button" onclick="dis('4')" id="four" value="4">
+            </div>
+            <div class="button">
+                <input type="button" onclick="dis('5')" id="five" value="5">
+            </div>
+            <div class="button">
+                <input type="button" onclick="dis('6')" id="six" value="6">
+            </div>
+            <div class="button">
+                <input type="button" onclick="if(document.getElementById('input').value == 0){dis('0')}else{dis('-')}" id="subtract" style="color: #FF5722;" value="-">
+            </div>
+        </div>
+        <div class="col">
+            <div class="button">
+                <input type="button" onclick="dis('1')" id="one" value="1">
+            </div>
+            <div class="button">
+                <input type="button" onclick="dis('2')" id="two" value="2">
+            </div>
+            <div class="button">
+                <input type="button" onclick="dis('3')" id="three" value="3">
+            </div>
+            <div class="button">
+            <input type="button" onclick="if(document.getElementById('input').value == 0){dis('0')}else{dis('+')}" id="sum" style="color: #FF5722;" value="+">
+            </div>
+        </div>
+        <div class="col">
+            <div class="button">
+                <input type="button" onclick="dis('0')" id="zero" value="0">
+            </div>
+            <div class="button">
+                <input type="button" onclick="dis('.')" id="point" value=".">
+            </div>
+            <div class="button">
+                <input type="button" onclick="dis('E')" id="e" value="E">
+            </div>
+            <div class="button">
+                <input type="button" onclick="solve()" id="result" style="color: #FF5722;" value="=">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var input = document.getElementById("input");
+        var e  = document.getElementById('e');
+        var point  = document.getElementById('point');
+        var zero  = document.getElementById('zero');
+     /* Sign */
+        var sum  = document.getElementById('sum');
+        var subtract  = document.getElementById('subtract');
+        var multiplie  = document.getElementById('multiplie');
+        var divided  = document.getElementById('divided');
+        var moduls  = document.getElementById('moduls');
+    /* End sign */
+        var clean  = document.getElementById('clean');
+        var clean  = document.getElementById('clean');
+        var clean  = document.getElementById('clean');
+        var clean  = document.getElementById('clean');
+        var clean  = document.getElementById('clean');
+        var clean  = document.getElementById('clean');
+
+        function allclr() 
+        { 
+            input.value = "0" ;
+        } 
+ 
+        function dis(val) 
+        { 
+
+            if(input.value == 0){
+                input.value = val;
+                
+            }else{
+                input.value += val;
+            }
+        }
+
+        function solve() 
+         { 
+             var x = input.value;
+             var y = eval(x);
+             input.value = y;
+         } 
+
+         function clr(){
+
+            if(input.value == 0){
+                input.value = val;
+                
+            }else{
+                var str = input.value;
+                var newStr = str.substring(0, str.length - 1);
+                if(newStr == ""){
+                    input.value = 0;
+                }else{
+
+                 input.value = newStr;
+                }
+            }
+ 
+         }
+
+    </script>
+
+
+</body>
+</html>
